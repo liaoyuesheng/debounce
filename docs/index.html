@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/vs.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <title>Debounce Examples</title>
+</head>
+<body>
+<div id="scroll-container">
+    <div style="height: 1000px;">scroll me</div>
+</div>
+<div class="log">scrollTop: </div>
+<script type="module" id="demo-js">
+  import debounce from './debounce.esm.js'
+
+  const elLog = document.querySelector('.log')
+  const debounceHandler = debounce(function (e) {
+    elLog.textContent = 'scrollTop: '+ e.target.scrollTop
+  }, 500)
+  document.querySelector('#scroll-container').addEventListener('scroll', debounceHandler)
+</script>
+<pre><code class="code language-html" data-for="#demo-js"></code></pre>
+<script>
+  Array.from(document.querySelectorAll('.code')).forEach((code) => {
+    const target = document.querySelector(code.getAttribute('data-for'))
+    code.textContent = code.classList.contains('language-html') ? target.outerHTML : target.textContent
+    hljs.highlightElement(code)
+  })
+</script>
+</body>
+</html>
